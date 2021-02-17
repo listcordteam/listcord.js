@@ -47,3 +47,4 @@ client.on('error', console.log); // Event fires when an unknown error occurs!
 
 - [Join our discord server](https://discord.gg/cMGAyhZXwW)
 - [Website](https://listcord.xyz)
+- [GitHub](https://github.com/listcordteam/listcord.js)

@@ -4,6 +4,10 @@
   "description": "Simple and official api wrapper for listcord api!",
   "main": "./src/index.js",
   "typings": "./src/index.d.ts",
+  "readme": "README.md",
+  "repository": {
+    "url": "https://github.com/listcordteam/listcord.js"
+  },
   "scripts": {
     "test": "node test"
   },

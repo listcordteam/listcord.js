@@ -1,4 +1,3 @@
-//@ts-check
 import { EventEmitter } from 'events'
 
 export namespace Types{
