@@ -44,11 +44,11 @@ export class Client extends EventEmitter{
     private readonly baseURL: string;
 
     public constructor(token: string);
-    public async getBot(id: string): Promise<Types.Bot | null>;
-    public async getBotReviews(id: string): Promise<Types.BotReview[]>;
-    public async getReview(userID: string, botID: string): Promise<Types.BotReview | null>;
-    public async hasVoted(userID: string, botID: string): Promise<Types.Voted | null>;
-    public async search(query: string): Promise<Types.Bot[]>;
+    public getBot(id: string): Promise<Types.Bot | null>;
+    public getBotReviews(id: string): Promise<Types.BotReview[]>;
+    public getReview(userID: string, botID: string): Promise<Types.BotReview | null>;
+    public hasVoted(userID: string, botID: string): Promise<Types.Voted | null>;
+    public search(query: string): Promise<Types.Bot[]>;
     protected handleError(e: any): void;
 
 }
