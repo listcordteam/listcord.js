@@ -35,11 +35,12 @@ await client.search('shaz'); // Returns you the array of the bots which matches 
 
 ## Events
 
-There are some events of the client such as `serverError`, `rateLimit`, `error`!
+There are some events of the client such as `serverError`, `rateLimit`, `invalidToken`,  `error`!
 
 ```js
 client.on('serverError', () => console.log('Looks like the server has got some error! 500!')); // Event fires when our server gets an error and we could not send you the response!
 client.on('rateLimit', () => console.log('Looks like we have sent so much requests! So its 429!')); // Event fires when you have been rate limited by our api!
+client.on('invalidToken', () => console.log('Looks like your token you have sent to the listcord api is invalid! 40!')); // This happens when your token is been invalid and you are making requests to the api!
 client.on('error', console.log); // Event fires when an unknown error occurs!
 ```
 

@@ -17,7 +17,7 @@ export namespace Types{
         website?: string;
         tags: string[];
         prefix: string;
-        created_at: number;
+        submitted_at: number;
         approved: boolean;
     }
 
