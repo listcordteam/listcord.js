@@ -23,14 +23,38 @@ client.getBot('some bot id').then(x => console.log(x));
 
 ## Methods
 
-Not a big work, just some few methods!
+Basic methods of listcord api!
 
 ```js
 await client.getBot('801976787264471120'); // Returns you the information of the bot!
 await client.getBotReviews('801976787264471120'); // Returns you array of reviews of the bot!
 await client.getReview('user id', 'bot id'); // Returns the review details by the discord id of the reviewer and the bot which was reviewed!
+await client.getPack('featuredfun'); // Returns the bot packs information which has id 'featuredfun'
+await client.getPacks(); // Returns all packs in a object refer Listcord.APITypes.Botpacks for types!
 await client.hasVoted('user id', 'bot id'); // Verify if particular user has voted a paticular bot by id!
-await client.search('shaz'); // Returns you the array of the bots which matches your query!
+```
+
+## Post stats
+
+You can either post stats using `Listcord.AutoPoster` or either `Listcord.Client.prototype.postStats`!
+
+```js
+const { success, message } = await client.postStats('801976787264471120', 100 /** Server count. */ );
+console.log(success ? 'Success' : `Failed: ${message}`);
+```
+
+### AutoPoster
+
+Autoposter supports `eris` and `discord.js` libraries!
+
+```js
+const poster = client.createAutoPoster(client, /** Discord client */ {
+    interval: 900000, // Default
+    startOnInitiate: true // Default
+})
+
+poster.on('post', (response) => console.log(response)); // Emits when on successful post
+poster.on('error', (error) => console.log(error)); // Emits on error!
 ```
 
 ## Events
