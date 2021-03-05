@@ -9,8 +9,19 @@ const isSupportedLib = (pkg, client) => {
     }
 }
 
+/**
+ * Easy to use autoposter!
+ */
 class AutoPoster extends EventEmitter{
 
+    /**
+     * It might be difficult to post server count manually so autoposter makes it easy with many utility methods!
+     * 
+     * @param {string} token Your listcord token
+     * @param {*} client Your discord.js or eris client!
+     * @param {object} options You options
+     * @extends new Listcord.AutoPoster('token', client);
+     */
     constructor(token, client, options = { interval: 900000, startOnInitiate: true }){
         super();
         
@@ -36,6 +47,10 @@ class AutoPoster extends EventEmitter{
         } else this.stopped = true;
     }
 
+    /**
+     * Starts posting only if it was stopped previously or was stopped from first using options.startOnInititae
+     * @example poster.start();
+     */
     start(){
         if(!this.stopped) return;
         this.emit('start');
@@ -48,6 +63,13 @@ class AutoPoster extends EventEmitter{
         }
     }
 
+    /**
+     * You can use this method in client.postStats instead of using this!
+     * 
+     * @param {string} id Your discord bot id
+     * @param {number} count Your server count to post
+     * @example await poster.post('123456789', 200)
+     */
     async post(id, count){
         try{
             const { data } = await axios({
@@ -63,6 +85,10 @@ class AutoPoster extends EventEmitter{
         }
     }
 
+    /**
+     * Stops posting
+     * @example poster.stop()
+     */
     stop(){
         this.emit('stop');
         this.stopped = true;

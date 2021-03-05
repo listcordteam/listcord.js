@@ -119,6 +119,47 @@ class Client extends EventEmitter{
     }
 
     /**
+     * Get a listcord bot pack data!
+     * 
+     * @param {string} id Listcord pack id
+     * @example const pack = client.getPack('featuredfun');
+     */
+    async getPack(id){
+        try{
+            const { data } = await axios({
+                method: 'GET',
+                url: this.baseURL + '/pack/' + id,
+                headers: { Authorization: this.token }
+            });
+
+            return data;
+        }catch(e){
+            this.handleError(e);
+            return null;
+        }
+    }
+
+    /**
+     * Returns all listcord packs in object!
+     * 
+     * @example const packs = await client.getPacks();
+     */
+    async getPacks(){
+        try{
+            const { data } = await axios({
+                method: 'GET',
+                url: this.baseURL + '/packs',
+                headers: { Authorization: this.token }
+            });
+
+            return data;
+        }catch(e){
+            this.handleError(e);
+            return null;
+        }
+    }
+
+    /**
      * Post server stats on listcord!
      * 
      * @param {string} id ID of your discord bot
@@ -143,6 +184,13 @@ class Client extends EventEmitter{
         }
     }
 
+    /**
+     * Create an auto poster using the client class itself
+     * 
+     * @param {*} client Your discord.js or spotify client to post! 
+     * @param {object} options Your poster options!
+     * @example const poster = client.createAutoPoster(client);
+     */
     createAutoPoster(client, options){
         return new AutoPoster(this.token, client, options);
     }

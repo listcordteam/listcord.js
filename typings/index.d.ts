@@ -44,6 +44,17 @@ export namespace APITypes{
         message?: boolean;
     }
 
+    export interface Botpack{
+        name: string;
+        desription: string;
+        bots: string[];
+        tags: string[];
+    }
+
+    export interface Botpacks{
+        [key: string]: Botpack;
+    }
+
     export type RawResponse<T> = T | ErrorResponse;
 
 }
@@ -128,6 +139,8 @@ export class Client extends EventEmitter{
     public getReview(userID: string, botID: string): Promise<Review | null>;
     public hasVoted(userID: string, botID: string): Promise<Voted | null>;
     public postStats(id: string, serverCount: number): Promise<APITypes.PostResponse>;
+    public getPack(id: string): Promise<APITypes.Botpack | null>;
+    public getPacks(): Promise<APITypes.Botpacks>;
     public createAutoPoster(client, options?: PosterOptions): AutoPoster;
 
     protected handleError(e): never | void | null;
