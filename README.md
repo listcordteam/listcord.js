@@ -1,6 +1,6 @@
 # Listcord.js
 
-An official wrapper for listcord api!
+An official wrapper for listcord api! As this library lacks in documentation kindly make an issue or contact us on discord for doubts!
 
 > View https://listcord.xyz/apidocs to view the raw api documentation!
 
@@ -55,6 +55,9 @@ const poster = client.createAutoPoster(client, /** Discord client */ {
 
 poster.on('post', (response) => console.log(response)); // Emits when on successful post
 poster.on('error', (error) => console.log(error)); // Emits on error!
+
+poster.stop(); // Stops posting...
+poster.start(); // Starts posting...
 ```
 
 ## Events
