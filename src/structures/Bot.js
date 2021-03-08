@@ -30,6 +30,11 @@ class Bot{
         this.submittedTimestamp = data.submitted_at;
         this.serverCount = data.servers || 0;
         this.isApproved = data.approved;
+
+        if(data.certified){
+            this.isCertified = data.certified;
+            this.vanityID = data.vanity;
+        }
     }
 
     /**
@@ -38,6 +43,14 @@ class Bot{
      */
     get submittedAt(){
         return this.submittedTimestamp ? new Date(this.submittedTimestamp) : null;
+    }
+
+    /**
+     * Returns listcord vanity url only if its exists!
+     * @readonly
+     */
+    get vanityURL(){
+        return this.vanityID ? `https://listcord.xyz/x/${this.vanityID}` : null;
     }
 
 }

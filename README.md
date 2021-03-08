@@ -2,7 +2,7 @@
 
 An official wrapper for listcord api! As this library lacks in documentation kindly make an issue or contact us on discord for doubts!
 
-> View https://listcord.xyz/apidocs to view the raw api documentation!
+> View https://listcord.xyz/docs to view the raw api documentation!
 
 ## Installation
 

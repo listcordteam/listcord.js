@@ -20,6 +20,8 @@ export namespace APITypes{
         submitted_at: number;
         approved: boolean;
         servers: number;
+        certified: boolean;
+        vanity: string;
     }
 
     export interface BotReview{
@@ -78,9 +80,12 @@ export class Bot{
     submittedTimestamp: number | null;
     serverCount: number;
     isApproved: boolean;
+    isCertified: boolean;
+    vanityID?: string;
 
     public constructor(data, client?: Client);
     public get submittedAt(): Date | null;
+    public get vanityURL(): string | null;
 
 }
 
