@@ -17,7 +17,7 @@ class Bot{
         })
 
         this.id = data.id;
-        this.username = data.username;
+        this.username = data.name;
         this.avatarURL = data.avatar;
         this.description = data.description;
         this.developers = data.developers;
@@ -51,6 +51,22 @@ class Bot{
      */
     get vanityURL(){
         return this.vanityID ? `https://listcord.xyz/x/${this.vanityID}` : null;
+    }
+
+    /**
+     * Return all the reviews of the bot!
+     * @example bot.getReviews();
+     */
+    async getReviews(){
+        return await this.client.getBotReviews(this.id);
+    }
+
+    /**
+     * Post server count to the listcord
+     * @param {number} count Server count of your bot!
+     */
+    async postStats(count){
+        return await this.client.postStats(this.id, count);
     }
 
 }

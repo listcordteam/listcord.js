@@ -3,6 +3,7 @@ const Review = require('../structures/Review');
 const AutoPoster = require('./AutoPoster');
 const { EventEmitter } = require('events');
 const axios = require('axios');
+const RouteBuilder = require('./RouteBuilder');
 
 /**
  * The main listcord api client class
@@ -25,6 +26,15 @@ class Client extends EventEmitter{
     }
 
     /**
+     * Returns an routebuilder of the listcord api!
+     * 
+     * @readonly
+     */
+    get api(){
+        return RouteBuilder(this);
+    }
+
+    /**
      * Returns the bot information by the bot id!
      * 
      * @param {string} id Bot discord id
@@ -32,13 +42,7 @@ class Client extends EventEmitter{
      */
     async getBot(id){
         try{
-            const { data } = await axios({
-                method: 'GET',
-                url: this.baseURL + '/bot/' + id,
-                headers: { Authorization: this.token }
-            });
-
-            return new Bot(data, this);
+            return new Bot(await this.api.bot(id).get(), this);
         }catch(e){
             this.handleError(e);
             return null;
@@ -53,13 +57,8 @@ class Client extends EventEmitter{
      */
     async getBotReviews(id){
         try{
-            const { data } = await axios({
-                method: 'GET',
-                url: this.baseURL + '/bot/' + id + '/reviews',
-                headers: { Authorization: this.token }
-            });
-
-            return data.message == 'not found' ? [] : data.map(x => new Review(x));
+            const data = await this.api.bot(id).reviews.get();
+            return data.map(x => new Review(x));
         }catch(e){
             this.handleError(e);
             return null;
@@ -75,11 +74,7 @@ class Client extends EventEmitter{
      */
     async getReview(userID, botID){
         try{
-            const { data } = await axios({
-                method: 'GET',
-                url: this.baseURL + '/bot/' + botID + '/reviews',
-                headers: { token: this.token }
-            });
+            const data = await this.api.bot(botID).reviews.get();
             
             for(let i = 0; i < data.length; i++){
                 if(data[i].author_id == userID) return new Review(data[i]);
@@ -101,10 +96,8 @@ class Client extends EventEmitter{
      */
     async hasVoted(userID, botID){
         try{
-            const { data } = await axios({
-                method: 'GET',
-                url: this.baseURL + '/bot/' + botID + '/voted?user_id=' + userID,
-                headers: { Authorization: this.token }
+            const data = await this.api.bot(botID).voted.get({
+                params: { user_id: userID }
             });
 
             return data.message == 'not found' ? null : {
@@ -126,13 +119,7 @@ class Client extends EventEmitter{
      */
     async getPack(id){
         try{
-            const { data } = await axios({
-                method: 'GET',
-                url: this.baseURL + '/pack/' + id,
-                headers: { Authorization: this.token }
-            });
-
-            return data;
+            return await this.api.pack(id).get();
         }catch(e){
             this.handleError(e);
             return null;
@@ -146,13 +133,7 @@ class Client extends EventEmitter{
      */
     async getPacks(){
         try{
-            const { data } = await axios({
-                method: 'GET',
-                url: this.baseURL + '/packs',
-                headers: { Authorization: this.token }
-            });
-
-            return data;
+            return await this.api.packs.get();
         }catch(e){
             this.handleError(e);
             return null;
@@ -170,14 +151,9 @@ class Client extends EventEmitter{
         try{
             if(isNaN(count)) throw new TypeError('[Listcord => Client.postStats] Invalid count type provided');
 
-            const { data } = await axios({
-                method: 'POST',
-                url: this.baseURL + '/bot/' + id + '/stats',
-                headers: { Authorization: this.token },
-                data: { server_count: count }
+            return await this.api.bot(id).stats.post({
+                body: { server_count: count }
             });
-
-            return data;
         }catch(e){
             this.handleError(e);
             return null;

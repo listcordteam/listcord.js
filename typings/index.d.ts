@@ -61,6 +61,25 @@ export namespace APITypes{
 
 }
 
+export interface RouteBuilderFetchConfig{
+    headers: { [key: string]: string };
+    params: { [key: string]: string };
+    body: { [key: string]: string };
+}
+
+export type RouteBuilderFetch = (config?: RouteBuilderFetchConfig) => any;
+export type RouteBuilderKeys = RouteBuilder | RouteBuilderFetch | (() => string);
+
+export interface RouteBuilder{
+    (): RouteBuilderKeys;
+    get(config?: RouteBuilderFetchConfig);
+    post(config?: RouteBuilderFetchConfig);
+    toString(): string;
+    [key: string]: RouteBuilderKeys | (() => RouteBuilderKeys);
+}
+
+export const RouteBuilder: (client: Client) => RouteBuilder;
+
 export class Bot{
 
     readonly data: any;
@@ -84,8 +103,12 @@ export class Bot{
     vanityID?: string;
 
     public constructor(data, client?: Client);
+
     public get submittedAt(): Date | null;
     public get vanityURL(): string | null;
+
+    public getReviews(): Promise<Review[]>;
+    public postStats(): Promise<APITypes.PostResponse>;
 
 }
 
@@ -138,6 +161,8 @@ export class Client extends EventEmitter{
     private readonly baseURL: string;
 
     public constructor(token: string);
+
+    public get api(): RouteBuilder;
 
     public getBot(id: string): Promise<Bot | null>;
     public getBotReviews(id: string): Promise<Review[]>;
