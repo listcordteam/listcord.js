@@ -2,7 +2,7 @@
 
 An official wrapper for listcord api! As this library lacks in documentation kindly make an issue or contact us on discord for doubts!
 
-> View https://listcord.xyz/docs to view the raw api documentation!
+> View https://listcord.gg/docs to view the raw api documentation!
 
 ## Installation
 
@@ -12,7 +12,7 @@ npm i listcord.js
 
 ## Getting started
 
-> Get your api token from https://listcord.xyz/me. Listcord api is currently only available only for those who has bots registered in our botlist! After getting your token, make sure you save it in `.env` file!
+> Get your api token from https://listcord.gg/me. Listcord api is currently only available only for those who has bots registered in our botlist! After getting your token, make sure you save it in `.env` file!
 
 ```js
 const Listcord = require('listcord.js');
@@ -74,5 +74,5 @@ client.on('error', console.log); // Event fires when an unknown error occurs!
 ## Contact
 
 - [Join our discord server](https://discord.gg/cMGAyhZXwW)
-- [Website](https://listcord.xyz)
+- [Website](https://listcord.gg)
 - [GitHub](https://github.com/listcordteam/listcord.js)
