@@ -34,7 +34,7 @@ class AutoPoster extends EventEmitter{
         
         Object.defineProperties(this, {
             client: { value: client },
-            baseURL: { value: 'https://listcord.xyz/api' }
+            baseURL: { value: 'https://listcord.gg/api' }
         });
 
         this._id = null;
