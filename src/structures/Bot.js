@@ -50,7 +50,7 @@ class Bot{
      * @readonly
      */
     get vanityURL(){
-        return this.vanityID ? `https://listcord.xyz/x/${this.vanityID}` : null;
+        return this.vanityID ? `https://listcord.gg/x/${this.vanityID}` : null;
     }
 
     /**
