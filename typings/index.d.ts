@@ -83,27 +83,27 @@ export const RouteBuilder: (client: Client) => RouteBuilder;
 
 export class Bot{
 
-    readonly data: any;
-    readonly client?: Client;
+    data: any;
+    client?: Client;
     
-    readonly id: string;
-    readonly username: string;
-    readonly avatarURL: string;
-    readonly description: { 
+    id: string;
+    username: string;
+    avatarURL: string;
+    description: { 
         short: string; 
-        readonly long: string;
+        long: string;
     };
-    readonly developers: string[];
-    readonly requiredPermissions: number;
-    readonly upvotes: number;
-    readonly supportServer: string;
-    readonly website: string;
-    readonly tags: string[];
-    readonly prefix: string;
-    readonly submittedTimestamp: number | null;
-    readonly isApproved: boolean;
-    readonly isCertified: boolean;
-    readonly vanityID?: string;
+    developers: string[];
+    requiredPermissions: number;
+    upvotes: number;
+    supportServer: string;
+    website: string;
+    tags: string[];
+    prefix: string;
+    submittedTimestamp: number | null;
+    isApproved: boolean;
+    isCertified: boolean;
+    vanityID?: string;
 
     serverCount: number;
     status: APITypes.Statuses;
@@ -115,13 +115,12 @@ export class Bot{
 
     public getReviews(): Promise<Review[]>;
     public postStats(): Promise<APITypes.PostResponse>;
-    public edit(): Promise<APITypes.PostResponse>;
 
 }
 
 export class Review{
 
-    readonly data: any;
+    data: any;
 
     authorID: string;
     stars: number;
@@ -146,9 +145,9 @@ export interface PosterOptions{
 
 export class AutoPoster extends EventEmitter{
 
-    readonly token: string;
-    readonly client: any;
-    readonly interval: number;
+    token: string;
+    client: any;
+    interval: number;
     protected stopped: boolean;
     protected _id: NodeJS.Timeout;
     protected library: 'eris' | 'discord.js';
@@ -164,8 +163,8 @@ export class AutoPoster extends EventEmitter{
 
 export class Client extends EventEmitter{
 
-    readonly token: string;
-    private readonly baseURL: string;
+    token: string;
+    private baseURL: string;
 
     public constructor(token: string);
 

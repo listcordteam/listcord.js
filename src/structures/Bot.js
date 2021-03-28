@@ -69,12 +69,6 @@ class Bot{
         return await this.client.postStats(this.id, count);
     }
 
-    async edit({
-        description = this.description.short,
-        serverCount = this.serverCount,
-        status = this.status
-    })
-
 }
 
 module.exports = Bot;
