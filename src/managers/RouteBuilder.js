@@ -3,7 +3,7 @@ const methods = ['get', 'post', 'patch'];
 const noop = () => {};
 
 module.exports = (client) => {
-    var route = 'https://listcord.xyz/api';
+    var route = 'https://listcord.gg/api';
 
     return new Proxy(noop, {
         get(target, name){

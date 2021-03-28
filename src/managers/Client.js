@@ -22,7 +22,7 @@ class Client extends EventEmitter{
         if(!token) throw new TypeError('[Listcord => Client] You have not provided your Listcord API Token!');
 
         this.token = token;
-        Object.defineProperty(this, 'baseURL', { value: 'https://listcord.xyz/api' });
+        Object.defineProperty(this, 'baseURL', { value: 'https://listcord.gg/api' });
     }
 
     /**
