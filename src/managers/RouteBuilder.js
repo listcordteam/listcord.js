@@ -1,5 +1,5 @@
 const axios = require('axios');
-const methods = ['get', 'post'];
+const methods = ['get', 'post', 'patch'];
 const noop = () => {};
 
 module.exports = (client) => {

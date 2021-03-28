@@ -58,6 +58,7 @@ export namespace APITypes{
     }
 
     export type RawResponse<T> = T | ErrorResponse;
+    export type Statuses = 'online' | 'dnd' | 'offline' | 'idle' | 'unknown';
 
 }
 
@@ -84,23 +85,28 @@ export class Bot{
 
     readonly data: any;
     readonly client?: Client;
+    
+    readonly id: string;
+    readonly username: string;
+    readonly avatarURL: string;
+    readonly description: { 
+        short: string; 
+        readonly long: string;
+    };
+    readonly developers: string[];
+    readonly requiredPermissions: number;
+    readonly upvotes: number;
+    readonly supportServer: string;
+    readonly website: string;
+    readonly tags: string[];
+    readonly prefix: string;
+    readonly submittedTimestamp: number | null;
+    readonly isApproved: boolean;
+    readonly isCertified: boolean;
+    readonly vanityID?: string;
 
-    id: string;
-    username: string;
-    avatarURL: string;
-    description: { short: string; long: string; };
-    developers: string[];
-    requiredPermissions: number;
-    upvotes: number;
-    supportServer: string;
-    website: string;
-    tags: string[];
-    prefix: string;
-    submittedTimestamp: number | null;
     serverCount: number;
-    isApproved: boolean;
-    isCertified: boolean;
-    vanityID?: string;
+    status: APITypes.Statuses;
 
     public constructor(data, client?: Client);
 
@@ -109,6 +115,7 @@ export class Bot{
 
     public getReviews(): Promise<Review[]>;
     public postStats(): Promise<APITypes.PostResponse>;
+    public edit(): Promise<APITypes.PostResponse>;
 
 }
 
