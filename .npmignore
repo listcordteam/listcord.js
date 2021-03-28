@@ -1,2 +1,4 @@
-# Deno files
+# Test files
+test/
 mod.ts
+src/index.d.ts
